@@ -1,0 +1,54 @@
+<%= form_for(@song, :html => {:multipart => true}) do |f| %>
+  <% if @song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :artist_id %><br />
+    <%= f.select :artist_id, Artist.all.map { |a| [a.name, a.id] }, {:prompt => "Pick an artist"} %>
+  </div>
+
+  <div>
+    <%= f.label :album_id %><br />
+    <%= f.select :album_id, Album.all.map { |a| [a.name, a.id] }, {:prompt => "Pick an album"} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </div>
+
+  <div class="field">
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+    <%= f.text_field :remote_photo_url %>
+  </div>
+  <div class="field">
+    <%= f.label :file %><br />
+    <%= f.text_field :file %>
+  </div>
+
+  <div class="field">
+    <% Genre.all.each do |genre| %><br />
+      <%= genre.name %>
+      <%= check_box_tag 'song[genre_ids][]', genre.id, @song.genres.include?(genre) %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

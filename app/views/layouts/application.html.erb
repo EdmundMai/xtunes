@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Xtunes</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="navbar navbar-inverse">
+			    <div class="navbar-inner">
+			    	<a class="brand" href="<%= own_songs_path %>">xTunes</a>
+					    <ul class="nav">
+					      <li><%= show_login(@auth_user) %></li>
+					      <%= create_navlink("Home", home_path) %>
+					      <%= create_navlink("Songs", songs_path) %>
+					      <%= create_navlink("Artists", artists_path) %>
+					      <%= create_navlink("Albums", albums_path) %>
+					      <%= create_navlink("Genres", genres_path) %>
+					      <%= create_navlink("Mixtapes", mixtapes_path) %>
+					      <%= create_navlink("Users", users_path) %>
+					    </ul>
+				    </div>
+	   		 	</div>
+			</div>
+		<div class="row">
+			<div class="span3">
+				<%= image_tag("music.jpeg") %>
+ 			</div>
+			<div class="span9">
+				<%= notice %>
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+
+<!-- 	<div class="nav">
+		<%= show_login(@auth_user) %> |
+		<%= link_to "Songs", songs_path %> |
+		<%= link_to "Artists", artists_path %> |
+		<%= link_to "Albums", albums_path %> |
+		<%= link_to "Genres", genres_path %> |
+		<%= link_to "Mixtapes", mixtapes_path %> |
+		<%= link_to "Users", users_path %>
+	</div> -->
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: songs
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  photo      :string(255)
+#  file       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  artist_id  :integer
+#  album_id   :integer
+#  cost       :decimal(, )
+#  like       :integer          default(0)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  photo: MyString
+  file: MyString
+
+two:
+  name: MyString
+  photo: MyString
+  file: MyString

@@ -1,0 +1,16 @@
+<h1>Today's Top Songs</h1>
+
+
+<div class="newlinkholder">
+<%= link_to 'Add New Song', new_song_path, :id => "newsonglink" %>
+</div>
+
+<%= render :partial => 'shared/song', :collection => @songs, :as => :song %>
+
+
+
+
+
+<br />
+
+

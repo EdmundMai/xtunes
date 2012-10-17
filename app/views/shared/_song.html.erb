@@ -1,0 +1,21 @@
+<div class="box span4">
+  <ul class="frontpage">
+    <div class="songpic"><%= link_to image_tag(song.photo.thumb.url, :class => "span4"), song_path(song) %></div>
+    <div class="player"><%= audio_tag(song.file, :controls => true) if @auth_user && @auth_user.songs.include?(song) %></div>
+    <div><span class="songname"><%= song.name %></span><span class="editdestroylinks"><%= link_to 'Edit', edit_song_path(song) %> <%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
+    <div>
+    	<% if !@auth_user.songs.include?(song) %>
+    		<%= link_to number_to_currency(song.cost), purchase_song_path(song), :class => "btn btn-success btn-mini" %> 
+    	<% else %>
+    		<%= link_to "Refund", refund_song_path(song), :class => "btn btn-warning btn-mini", :confirm => "Are you sure?" %> 
+    	<% end %>
+
+    	<%= link_to "#{song.like} likes", like_song_path(song), :class => "btn btn-primary btn-mini" %>
+    	<%= link_to "Unlike", unlike_song_path(song), :class => "btn btn-primary btn-mini" %>
+
+    </div>
+
+    <div><%= link_to (song.artist ? song.artist.name : 'Not selected'), edit_song_path(song) %></div>
+    <div><%= link_to (song.album ? song.album.name : 'Not selected'), edit_song_path(song) %></div>
+  </ul>
+</div>

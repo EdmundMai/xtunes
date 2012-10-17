@@ -1,0 +1,27 @@
+<%= form_for(@genre) do |f| %>
+  <% if @genre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@genre.errors.count, "error") %> prohibited this genre from being saved:</h2>
+
+      <ul>
+      <% @genre.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <% Song.all.each do |song| %><br />
+    <%= song.name %>
+    <%= check_box_tag 'genre[song_ids][]', song.id, @genre.songs.include?(song) %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
